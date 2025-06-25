@@ -7,7 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Adapters\" />
+      <ProjectReference Include="..\Connector.Application\Connector.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.6" />
+      <PackageReference Include="RestSharp" Version="112.1.0" />
     </ItemGroup>
 
 </Project>
