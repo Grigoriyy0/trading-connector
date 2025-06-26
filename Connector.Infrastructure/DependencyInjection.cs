@@ -9,5 +9,7 @@ public static class DependencyInjection
     {
         services.AddScoped<RestConnector>();
         services.AddScoped<TimePeriodResolver>();
+        services.AddScoped<WebSocketConnector>();
+        services.AddLogging();
     }
 }

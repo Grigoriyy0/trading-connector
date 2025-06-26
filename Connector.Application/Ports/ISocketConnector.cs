@@ -6,10 +6,12 @@ public interface ISocketConnector
 {
     event Action<Trade> NewBuyTrade;
     event Action<Trade> NewSellTrade;
-    void SubscribeTrades(string pair, int maxCount = 100);
-    void UnsubscribeTrades(string pair);
+    Task SubscribeTrades(string pair, int maxCount = 100);
+    Task UnsubscribeTrades(string pair);
 
     event Action<Candle> CandleSeriesProcessing;
-    void SubscribeCandles(string pair, int periodInSec, DateTimeOffset? from = null, DateTimeOffset? to = null, long? count = 0);
+
+    void SubscribeCandles(string pair, int periodInSec, long? count, DateTimeOffset? from = null,
+        DateTimeOffset? to = null);
     void UnsubscribeCandles(string pair);
 }

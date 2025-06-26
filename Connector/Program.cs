@@ -1,4 +1,5 @@
 using Connector.Infrastructure;
+using Microsoft.AspNetCore.WebSockets;
 
 namespace Connector;
 
@@ -24,7 +25,7 @@ public class Program
         }
 
         app.UseHttpsRedirection();
-
+        app.UseWebSockets();
         app.UseAuthorization();
 
 
