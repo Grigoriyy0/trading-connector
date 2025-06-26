@@ -15,10 +15,19 @@ namespace Connector.Controllers
         }
 
         [HttpPost]
-        [Route("subscribe")]
+        [Route("subscribe-trade/{pair}")]
         public async Task<IActionResult> SubscribeAsync(string pair, int maxCount = 100)
         {
             await _webSocketConnector.SubscribeTrades(pair, maxCount);
+            return NoContent();
+        }
+
+        [HttpPost]
+        [Route("subscribe-candle/{pair}")]
+        public async Task<IActionResult> SubscribeCandlesAsync(string pair, int periodInSec, long? count = null, DateTimeOffset? from = null, DateTimeOffset? to = null)
+        {
+            await _webSocketConnector.SubscribeCandles(pair, periodInSec, count, from, to);
+            
             return NoContent();
         }
     }

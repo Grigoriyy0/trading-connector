@@ -11,7 +11,7 @@ public interface ISocketConnector
 
     event Action<Candle> CandleSeriesProcessing;
 
-    void SubscribeCandles(string pair, int periodInSec, long? count, DateTimeOffset? from = null,
+    Task SubscribeCandles(string pair, int periodInSec, long? count, DateTimeOffset? from = null,
         DateTimeOffset? to = null);
     void UnsubscribeCandles(string pair);
 }
