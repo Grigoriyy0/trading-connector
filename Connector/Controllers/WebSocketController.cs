@@ -21,19 +21,5 @@ namespace Connector.Controllers
             await _webSocketConnector.SubscribeTrades(pair, maxCount);
             return NoContent();
         }
-
-        [HttpPost]
-        [Route("unsubscribe")]
-        public async Task<IActionResult> UnsubscribeAsync(string pair)
-        {
-            await _webSocketConnector.UnsubscribeTrades(pair);
-            return NoContent();
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok();
-        }
     }
 }
