@@ -15,10 +15,6 @@ public class WebSocketConnector : ISocketConnector
     {
         _timePeriodResolver = timePeriodResolver;
     }
-
-    public event Action<Trade>? NewBuyTrade;
-    
-    public event Action<Trade>? NewSellTrade;
     
     public async Task SubscribeTrades(string pair, int maxCount = 100)
     {
@@ -63,16 +59,6 @@ public class WebSocketConnector : ISocketConnector
         }
     }
     
-    // Немного не понял, как сделать правильную отписку от мониторинга трейдов,
-    // в голове был вариант с каким то глобальным хранением коннектов в памяти, но подумал, что тяжелая и не очень красивая реализация
-    public async Task UnsubscribeTrades(string pair)
-    {
-        throw new NotImplementedException();
-    }
-
-    
-    public event Action<Candle>? CandleSeriesProcessing;
-
     public async Task SubscribeCandles(string pair, int periodInSec,
         long? count, DateTimeOffset? from = null, DateTimeOffset? to = null)
     {
@@ -119,9 +105,5 @@ public class WebSocketConnector : ISocketConnector
             
         }
     }
-
-    public void UnsubscribeCandles(string pair)
-    {
-        throw new NotImplementedException();
-    }
+    
 }
