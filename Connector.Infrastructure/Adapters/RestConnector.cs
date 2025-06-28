@@ -68,4 +68,34 @@ public class RestConnector : IRestConnector
         
         return candlesData;
     }
+
+    public async Task<Ticker> GetTickerAsync(string pair)
+    {
+        var client = _httpClientFactory.CreateClient();
+
+        var response = await client.GetAsync($"https://api-pub.bitfinex.com/v2/ticker/{pair}");
+        
+        response.EnsureSuccessStatusCode();
+        
+        var responseString = await response.Content.ReadAsStringAsync();
+
+        var tickerData = JsonSerializer.Deserialize<List<decimal>>(responseString) ??
+                         throw new InvalidOperationException("Data set is null");
+
+        var ticker = new Ticker
+        {
+            Bid = tickerData[0],
+            BidSize = tickerData[1],
+            Ask = tickerData[2],
+            AskSize = tickerData[3],
+            DailyChange = tickerData[4],
+            DailyChangeRelative = tickerData[5],
+            LastPrice = tickerData[6],
+            Volume = tickerData[7],
+            High = tickerData[8],
+            Low = tickerData[9],
+        };
+            
+        return ticker;
+    }
 }

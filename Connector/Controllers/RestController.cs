@@ -23,9 +23,16 @@ namespace Connector.Controllers
 
         [HttpGet]
         [Route("candles/")]
-        public async Task<IActionResult> GetCandles(string pair, int maxCount, int periodInSeconds)
+        public async Task<IActionResult> GetCandles(string pair, int maxCount, int periodInSeconds, DateTimeOffset? from = null, DateTimeOffset? to = null)
         {
-            return Ok(await _restConnector.GetCandleSeriesAsync(pair, periodInSeconds, null, maxCount, null));
+            return Ok(await _restConnector.GetCandleSeriesAsync(pair, periodInSeconds, from, maxCount, to));
+        }
+
+        [HttpGet]
+        [Route("ticker/")]
+        public async Task<IActionResult> GetTicker(string pair)
+        {
+            return Ok(await _restConnector.GetTickerAsync(pair));
         }
     }
 }
