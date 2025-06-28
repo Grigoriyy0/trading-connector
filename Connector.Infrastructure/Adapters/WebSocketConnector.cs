@@ -11,7 +11,7 @@ public class WebSocketConnector : ISocketConnector
 {
     private readonly TimePeriodResolver _timePeriodResolver;
     
-    public WebSocketConnector(ILogger<WebSocketConnector> logger, TimePeriodResolver timePeriodResolver)
+    public WebSocketConnector(TimePeriodResolver timePeriodResolver)
     {
         _timePeriodResolver = timePeriodResolver;
     }
